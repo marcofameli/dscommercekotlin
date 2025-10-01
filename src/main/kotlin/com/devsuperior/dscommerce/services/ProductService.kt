@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Propagation
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-open class ProductService(
+class ProductService(
     private val productRepository: ProductRepository
 ) {
     private val logger: Logger = LoggerFactory.getLogger(ProductService::class.java)
