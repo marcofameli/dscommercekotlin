@@ -14,9 +14,8 @@ class Category(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
     var name: String? = null,
-
     @ManyToMany(mappedBy = "categories")
-    val products: MutableSet<Product> = mutableSetOf()
+    val products: MutableSet<Product> = mutableSetOf(),
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -25,7 +24,5 @@ class Category(
         return id == other.id
     }
 
-    override fun hashCode(): Int {
-        return id?.hashCode() ?: 0
-    }
+    override fun hashCode(): Int = id?.hashCode() ?: 0
 }

@@ -6,9 +6,9 @@ class ValidationErrorDTO(
     timestamp: Instant,
     status: Int,
     error: String,
-    path: String
+    path: String,
 ) : CustomErrorDTO(timestamp, status, error, path) {
-    val errors: MutableList<FieldMessageDTO> = mutableListOf()
+    private val errors: MutableList<FieldMessageDTO> = mutableListOf()
     fun addError(fieldName: String, message: String) {
         errors.add(FieldMessageDTO(fieldName, message))
     }

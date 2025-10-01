@@ -18,8 +18,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder
 
 @RestController
 @RequestMapping("/products")
-class ProductController(private val service: ProductService) {
+class ProductController(
+    private val service: ProductService
 
+) {
     @GetMapping("/{id}")
     fun findById(@PathVariable id: Long): ResponseEntity<ProductDTO> {
         val dto = service.findById(id)
