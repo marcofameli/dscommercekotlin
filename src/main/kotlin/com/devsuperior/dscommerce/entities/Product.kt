@@ -1,33 +1,24 @@
 package com.devsuperior.dscommerce.entities
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.JoinColumn
-import jakarta.persistence.JoinTable
-import jakarta.persistence.ManyToMany
-import jakarta.persistence.OneToMany
-import jakarta.persistence.Table
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "tb_product")
 data class Product(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null,
+    val id: Long? = null,
 
-    var name: String? = null,
+    val name: String? = null,
 
     @Column(columnDefinition = "TEXT")
-    var description: String? = null,
+    val description: String? = null,
 
-    var price: Double? = null,
+    val price: Double? = null,
 
-    var imgUrl: String? = null,
+    val imgUrl: String? = null,
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)// retire esse eager dps
     @JoinTable(
         name = "tb_product_category",
         joinColumns = [JoinColumn(name = "product_id")],
@@ -35,7 +26,8 @@ data class Product(
     )
     val categories: MutableSet<Category> = mutableSetOf(),
 
-    @OneToMany(mappedBy = "id.product")
+  //  @OneToMany(mappedBy = "id.product")// o certo é esse
+    @OneToMany(fetch = FetchType.EAGER)
     val items: MutableSet<OrderItem> = mutableSetOf()
 ) {
     val orders: List<Order>

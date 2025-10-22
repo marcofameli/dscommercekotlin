@@ -1,11 +1,6 @@
 package com.devsuperior.dscommerce.entities
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.ManyToMany
-import jakarta.persistence.Table
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "tb_category")
@@ -14,7 +9,8 @@ class Category(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
     var name: String? = null,
-    @ManyToMany(mappedBy = "categories")
+    @ManyToMany(fetch = FetchType.EAGER)
+//    @ManyToMany(mappedBy = "categories") o certo é esse
     val products: MutableSet<Product> = mutableSetOf(),
 ) {
     override fun equals(other: Any?): Boolean {
