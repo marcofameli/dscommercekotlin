@@ -21,7 +21,7 @@ class ProductService(
 ) {
     private val logger: Logger = LoggerFactory.getLogger(ProductService::class.java)
 
-    @Transactional(readOnly = true)
+    @Transactional
     fun findById(id: Long): ProductDTO {
         val product = productRepository.findById(id).orElseThrow {
             ResourceNotFoundException("Recurso não encontrado")
